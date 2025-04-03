@@ -65,6 +65,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("s1ch6 result: %s\n", s1ch6.Key)
 	if s1ch6.Key != "Terminator X: Bring the noise" {
 		panic(fmt.Sprintf("s1ch6: invalid key %s\n", s1ch6.Key))
 	}
@@ -73,4 +74,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	s1ch8, err := set1.DetectAesInEcbMode("./set1/challenge8.txt")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("s1ch8 result: %s\n", s1ch8)
 }
