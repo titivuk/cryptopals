@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/titivuk/cryptopals/set1"
+	"github.com/titivuk/cryptopals/set2"
 	"github.com/titivuk/cryptopals/utils"
 )
 
@@ -80,4 +81,16 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("s1ch8 result: %s\n", s1ch8)
+
+	s2ch9, err := set2.Pad([]byte("YELLOW SUBMARINE"), 20)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("s2ch9 result: %s\n", string(s2ch9))
+
+	s2ch10, err := set2.CbcMode("./set2/challenge10.txt", []byte("YELLOW SUBMARINE"))
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("s2ch10 result: %s\n", string(s2ch10))
 }
