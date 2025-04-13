@@ -71,10 +71,7 @@ func main() {
 		panic(fmt.Sprintf("s1ch6: invalid key %s\n", s1ch6.Key))
 	}
 
-	_, err = set1.AesInEcbMode("./set1/challenge7.txt", "YELLOW SUBMARINE")
-	if err != nil {
-		panic(err)
-	}
+	set1.Chal7()
 
 	s1ch8, err := set1.DetectAesInEcbMode("./set1/challenge8.txt")
 	if err != nil {
@@ -93,4 +90,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("s2ch10 result: %s\n", string(s2ch10))
+
+	set2.EcbcbcDetector()
 }

@@ -3,6 +3,7 @@ package set2
 import (
 	"crypto/aes"
 	"encoding/base64"
+	"errors"
 	"os"
 )
 
@@ -17,10 +18,20 @@ func CbcMode(filePath string, key []byte) ([]byte, error) {
 		return nil, err
 	}
 
+	return AesInCbcMode(encrypted, key, nil)
+}
+
+func AesInCbcMode(encrypted, key []byte, iv []byte) ([]byte, error) {
+	if iv != nil && len(key) != len(iv) {
+		return nil, errors.New("key and IV vector must be the same size")
+	}
+
 	c, err := aes.NewCipher(key)
 	blockSize := len(key)
 	decrypted := make([]byte, 0)
-	iv := make([]byte, blockSize)
+	if iv == nil {
+		iv = make([]byte, blockSize)
+	}
 	for i := 0; i < len(encrypted); i += blockSize {
 		if err != nil {
 			return nil, err
